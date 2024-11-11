@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     try {
         console.log('Attempting login with:', email);
 
-        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
+        const response = await fetch(`${config.API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -74,8 +74,8 @@ function parseJwt(token) {
 // Add this helper function
 async function handleApiRequest(url, options = {}) {
     try {
-        console.log('Making request to:', `${config.API_URL}${url}`);
-        const response = await fetch(`${config.API_URL}${url}`, {
+        console.log('Making request to:', `${config.API_BASE_URL}${url}`);
+        const response = await fetch(`${config.API_BASE_URL}${url}`, {
             ...options,
             headers: {
                 'Content-Type': 'application/json',
@@ -98,21 +98,34 @@ async function handleApiRequest(url, options = {}) {
 async function handleLogin(event) {
     event.preventDefault();
     
+    const email = document.getElementById('email').value;
+    const password = document.getElementById('password').value;
+    
+    console.log('Attempting login with:', email);
+    
     try {
-        const response = await handleApiRequest('/api/auth/login', {
+        const response = await fetch(`${config.API_BASE_URL}/api/auth/login`, {
             method: 'POST',
-            body: JSON.stringify({
-                email: document.getElementById('email').value,
-                password: document.getElementById('password').value
-            })
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ email, password })
         });
-        
-        if (response.token) {
-            localStorage.setItem('token', response.token);
-            // Redirect based on user role
-            window.location.href = response.role === 'admin' ? 'admin.html' : 'timetable.html';
+
+        if (!response.ok) {
+            throw new Error('Login failed');
         }
+
+        const data = await response.json();
+        localStorage.setItem('token', data.token);
+        
+        // Redirect based on user role
+        window.location.href = data.role === 'admin' ? 'admin.html' : 'timetable.html';
     } catch (error) {
-        showError(error.message || 'Login failed');
+        console.error('Login error:', error);
+        document.getElementById('error-message').textContent = error.message;
     }
 }
+
+// Add event listener to the form
+document.getElementById('loginForm').addEventListener('submit', handleLogin);
