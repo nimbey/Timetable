@@ -70,3 +70,49 @@ function parseJwt(token) {
         return null;
     }
 }
+
+// Add this helper function
+async function handleApiRequest(url, options = {}) {
+    try {
+        console.log('Making request to:', `${config.API_URL}${url}`);
+        const response = await fetch(`${config.API_URL}${url}`, {
+            ...options,
+            headers: {
+                'Content-Type': 'application/json',
+                ...options.headers
+            }
+        });
+        
+        if (!response.ok) {
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'API request failed');
+        }
+        
+        return await response.json();
+    } catch (error) {
+        console.error('API request error:', error);
+        throw error;
+    }
+}
+
+async function handleLogin(event) {
+    event.preventDefault();
+    
+    try {
+        const response = await handleApiRequest('/api/auth/login', {
+            method: 'POST',
+            body: JSON.stringify({
+                email: document.getElementById('email').value,
+                password: document.getElementById('password').value
+            })
+        });
+        
+        if (response.token) {
+            localStorage.setItem('token', response.token);
+            // Redirect based on user role
+            window.location.href = response.role === 'admin' ? 'admin.html' : 'timetable.html';
+        }
+    } catch (error) {
+        showError(error.message || 'Login failed');
+    }
+}
