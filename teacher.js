@@ -55,7 +55,7 @@ async function loadMyClasses() {
     try {
         console.log('Loading classes for teacher:', user.name, 'Subject:', user.subject);
         
-        const response = await fetch(`${API_BASE_URL}/api/timetable/teacher`, {
+        const response = await fetch(`${config.API_BASE_URL}/api/timetable/teacher`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -100,7 +100,7 @@ async function loadMyClasses() {
 async function loadAllSchedules() {
     const token = checkAuth();
     try {
-        const response = await fetch(`${API_BASE_URL}/api/timetable/all`, {
+        const response = await fetch(`${config.API_BASE_URL}/api/timetable/all`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
