@@ -1,3 +1,5 @@
+const API_BASE_URL = "https://timetable-backend-48h4.onrender.com";
+
 // Check if user is logged in
 function checkAuth() {
     const token = localStorage.getItem('token');
