@@ -1,48 +1,69 @@
 async function loadUsers() {
     const token = checkAuth();
+    if (!token) {
+        console.error('No auth token available');
+        return;
+    }
+
     try {
-        console.log('Fetching users with token:', token ? 'Token exists' : 'No token');
+        console.log('Making request to:', `${API_URL}/api/admin/users`);
         
         const response = await fetch(`${API_URL}/api/admin/users`, {
+            method: 'GET',
             headers: {
-                'Authorization': `Bearer ${token}`
-            }
+                'Authorization': `Bearer ${token}`,
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            credentials: 'include'
         });
+
+        console.log('Response received:', response.status);
         
-        console.log('Response status:', response.status);
+        // Log the raw response text for debugging
+        const rawText = await response.text();
+        console.log('Raw response:', rawText);
         
-        if (!response.ok) {
-            const errorData = await response.json();
-            throw new Error(errorData.message || 'Failed to fetch users');
+        // Try to parse the response as JSON
+        let users;
+        try {
+            users = JSON.parse(rawText);
+        } catch (e) {
+            console.error('Failed to parse JSON:', e);
+            throw new Error('Invalid response format from server');
         }
-        
-        const users = await response.json();
-        console.log('Fetched users:', users);
-        
+
+        console.log('Parsed users:', users);
+
         const tbody = document.getElementById('usersTableBody');
         if (!tbody) {
-            throw new Error('Users table body element not found');
+            console.error('Could not find usersTableBody element');
+            return;
         }
-        
+
         tbody.innerHTML = '';
         
-        users.forEach(user => {
-            const row = document.createElement('tr');
-            row.innerHTML = `
-                <td>${user.name}</td>
-                <td>${user.email}</td>
-                <td>${user.role}</td>
-                <td>${user.subject || '-'}</td>
-                <td>
-                    <button onclick="editUser('${user._id}')" class="btn-primary">Edit</button>
-                    <button onclick="deleteUser('${user._id}')" class="delete-btn">Delete</button>
-                </td>
-            `;
-            tbody.appendChild(row);
-        });
+        if (Array.isArray(users)) {
+            users.forEach(user => {
+                const row = document.createElement('tr');
+                row.innerHTML = `
+                    <td>${user.name || ''}</td>
+                    <td>${user.email || ''}</td>
+                    <td>${user.role || ''}</td>
+                    <td>${user.subject || '-'}</td>
+                    <td>
+                        <button onclick="editUser('${user._id}')" class="btn-primary">Edit</button>
+                        <button onclick="deleteUser('${user._id}')" class="delete-btn">Delete</button>
+                    </td>
+                `;
+                tbody.appendChild(row);
+            });
+        } else {
+            console.error('Users data is not an array:', users);
+        }
     } catch (error) {
-        console.error('Error loading users:', error);
-        showError(error.message || 'Error loading users');
+        console.error('Error in loadUsers:', error);
+        showError(error.message || 'Failed to load users');
     }
 }
 
