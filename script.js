@@ -1,4 +1,4 @@
-const API_BASE_URL = "https://timetable-backend-9rbu.onrender.com";
+const API_BASE_URL = "https://timetable-backend-48h4.onrender.com";
 
 document.addEventListener('DOMContentLoaded', () => {
     // Check for signup success message
