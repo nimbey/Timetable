@@ -95,6 +95,8 @@ async function handleApiRequest(url, options = {}) {
     }
 }
 
+const API_BASE_URL = "https://timetable-backend-9rbu.onrender.com";
+
 async function handleLogin(event) {
     event.preventDefault();
     
@@ -104,7 +106,7 @@ async function handleLogin(event) {
     console.log('Attempting login with:', email);
     
     try {
-        const response = await fetch(`${config.API_BASE_URL}/api/auth/login`, {
+        const response = await fetch(`${API_BASE_URL}/api/auth/login`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -113,7 +115,8 @@ async function handleLogin(event) {
         });
 
         if (!response.ok) {
-            throw new Error('Login failed');
+            const errorData = await response.json();
+            throw new Error(errorData.message || 'Login failed');
         }
 
         const data = await response.json();
@@ -123,7 +126,13 @@ async function handleLogin(event) {
         window.location.href = data.role === 'admin' ? 'admin.html' : 'timetable.html';
     } catch (error) {
         console.error('Login error:', error);
-        document.getElementById('error-message').textContent = error.message;
+        const errorElement = document.querySelector('.error-message') || document.createElement('div');
+        errorElement.className = 'error-message';
+        errorElement.style.color = 'red';
+        errorElement.textContent = error.message;
+        
+        const loginButton = document.querySelector('button[type="submit"]');
+        loginButton.parentNode.insertBefore(errorElement, loginButton.nextSibling);
     }
 }
 
