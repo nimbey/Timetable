@@ -20,7 +20,7 @@ document.getElementById('loginForm').addEventListener('submit', async (e) => {
     try {
         console.log('Attempting login with:', email);
 
-        const response = await fetch('http://localhost:3001/api/auth/login', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/auth/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
