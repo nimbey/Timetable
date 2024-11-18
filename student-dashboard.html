@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Student Dashboard</h1>
+            <div class="user-info">
+                <span id="userName">Not logged in</span>
+                <button id="logoutBtn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="welcome-message" id="welcomeMessage"></div>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('myClasses')">My Classes</button>
+            <button class="tab-btn" onclick="showTab('allSchedules')">All Schedules</button>
+        </div>
+
+        <div id="myClasses" class="tab-content active">
+            <h2>My Class Schedule</h2>
+            <table id="myClassesTable">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Room</th>
+                    </tr>
+                </thead>
+                <tbody id="myClassesTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="allSchedules" class="tab-content">
+            <h2>Complete Schedule</h2>
+            <table id="allSchedulesTable">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Room</th>
+                    </tr>
+                </thead>
+                <tbody id="allSchedulesTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="student.js"></script>
+</body>
+</html> 

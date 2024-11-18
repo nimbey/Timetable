@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="admin.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Admin Dashboard</h1>
+            <div class="user-info">
+                <span id="userName">Not logged in</span>
+                <button id="logoutBtn" onclick="logout()">Logout</button>
+            </div>
+        </header>
+
+        <div class="tabs">
+            <button class="tab-btn active" onclick="showTab('users')">Manage Users</button>
+            <button class="tab-btn" onclick="showTab('timetable')">Manage Timetable</button>
+        </div>
+
+        <div id="users" class="tab-content active">
+            <h2>Users</h2>
+            <button onclick="showAddUserForm()">Add New User</button>
+            <table id="usersTable">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Role</th>
+                        <th>Subject</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="usersTableBody"></tbody>
+            </table>
+        </div>
+
+        <div id="timetable" class="tab-content">
+            <h2>Timetable</h2>
+            <button class="add-slot-btn">Add New Slot</button>
+            <table id="timetableTable">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Room</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="timetableTableBody"></tbody>
+            </table>
+        </div>
+    </div>
+
+    <script src="admin.js"></script>
+</body>
+</html> 

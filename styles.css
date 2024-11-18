@@ -1,0 +1,108 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e0e5ec;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.login-container {
+    background-color: #ecf0f3;
+    padding: 40px;
+    border-radius: 30px;
+    box-shadow: 13px 13px 20px rgba(0, 0, 0, 0.1);
+    width: 350px;
+    text-align: center;
+}
+
+h2 {
+    color: #3a3a3a;
+    margin: 20px 0 10px;
+}
+
+.input-group {
+    margin-bottom: 15px;
+    width: 100%; /* Ensure input groups take full width */
+}
+
+label {
+    display: block;
+    margin-bottom: 5px;
+}
+
+input {
+    width: 100%; /* Input fields take full width of the container */
+    padding: 15px; /* Increased padding for better spacing */
+    border: none;
+    border-radius: 50px; /* Rounded corners */
+    background-color: #ecf0f3;
+    box-shadow: inset 6px 6px 6px #cbced1, inset -6px -6px 6px #fff;
+    font-size: 16px;
+    color: #7a7a7a;
+    box-sizing: border-box; /* Include padding and border in element's total width and height */
+}
+
+.btn {
+    display: inline-block;
+    width: 100%; /* Button takes full width */
+    padding: 15px;
+    background-color: #00aaff;
+    border: none;
+    border-radius: 50px;
+    box-shadow: 6px 6px 6px #cbced1, -6px -6px 6px #fff;
+    color: #fff;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0099e6;
+}
+
+.error-message {
+    color: red;
+    text-align: center;
+    margin-top: 10px;
+}
+
+.footer {
+    margin-top: 20px;
+    color: #7a7a7a;
+}
+
+.footer a {
+    color: #00aaff;
+    text-decoration: none;
+}
+
+/* Add these to your existing styles */
+.input-group select {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    margin-top: 5px;
+}
+
+.success-message {
+    background-color: #d4edda;
+    color: #155724;
+    padding: 10px;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* Style for the select dropdown */
+select {
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+    background-repeat: no-repeat;
+    background-position: right 8px center;
+    background-size: 1em;
+}

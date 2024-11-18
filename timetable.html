@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Timetable</title>
+    <link rel="stylesheet" href="timetable.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Class Timetable</h1>
+            <div class="user-info">
+                <span id="userName"></span>
+                <button onclick="logout()" class="logout-btn">Logout</button>
+            </div>
+        </header>
+
+        <div class="timetable-container">
+            <table class="timetable">
+                <thead>
+                    <tr>
+                        <th>Day</th>
+                        <th>Time</th>
+                        <th>Subject</th>
+                        <th>Teacher</th>
+                        <th>Room</th>
+                    </tr>
+                </thead>
+                <tbody id="timetableBody">
+                    <!-- Timetable data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+    </div>
+    <script src="timetable.js"></script>
+</body>
+</html>
