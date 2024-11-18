@@ -49,7 +49,7 @@ function showTab(tabName) {
 async function loadUsers() {
     const token = checkAuth();
     try {
-        const response = await fetch('http://localhost:3001/api/admin/users', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/users', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -82,7 +82,7 @@ async function loadUsers() {
 async function loadTimetable() {
     const token = checkAuth();
     try {
-        const response = await fetch('http://localhost:3001/api/admin/timetable', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/timetable', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -116,7 +116,7 @@ async function loadTimetable() {
 async function addUser(formData) {
     const token = checkAuth();
     try {
-        const response = await fetch('http://localhost:3001/api/admin/users', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/users', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -140,7 +140,7 @@ async function addUser(formData) {
 async function addTimeSlot(formData) {
     const token = checkAuth();
     try {
-        const response = await fetch('http://localhost:3001/api/admin/timetable', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/timetable', {
             method: 'POST',
             headers: {
                 'Authorization': `Bearer ${token}`,
@@ -166,7 +166,7 @@ async function deleteUser(userId) {
     
     const token = checkAuth();
     try {
-        const response = await fetch(`http://localhost:3001/api/admin/users/${userId}`, {
+        const response = await fetch(`https://timetablebackend-a7n9.onrender.com/api/admin/users/${userId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -189,7 +189,7 @@ async function deleteSlot(slotId) {
     
     const token = checkAuth();
     try {
-        const response = await fetch(`http://localhost:3001/api/admin/timetable/${slotId}`, {
+        const response = await fetch(`https://timetablebackend-a7n9.onrender.com/api/admin/timetable/${slotId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -286,7 +286,7 @@ async function handleAddUser(e) {
     console.log('Creating user with data:', userData);
 
     try {
-        const response = await fetch('http://localhost:3001/api/admin/users', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/users', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -316,7 +316,7 @@ async function editUser(userId) {
     const token = checkAuth();
     try {
         console.log('Fetching user data for ID:', userId);
-        const response = await fetch(`http://localhost:3001/api/admin/users/${userId}`, {
+        const response = await fetch(`https://timetablebackend-a7n9.onrender.com/api/admin/users/${userId}`, {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -399,7 +399,7 @@ async function updateUser(userId) {
 
     try {
         console.log('Updating user with data:', userData);
-        const response = await fetch(`http://localhost:3001/api/admin/users/${userId}`, {
+        const response = await fetch(`https://timetablebackend-a7n9.onrender.com/api/admin/users/${userId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
@@ -433,7 +433,7 @@ async function handleDeleteUser(userId) {
     
     const token = checkAuth();
     try {
-        const response = await fetch(`http://localhost:3001/api/admin/users/${userId}`, {
+        const response = await fetch(`https://timetablebackend-a7n9.onrender.com/api/admin/users/${userId}`, {
             method: 'DELETE',
             headers: {
                 'Authorization': `Bearer ${token}`
@@ -565,7 +565,7 @@ async function handleAddSlot(e) {
     }
 
     try {
-        const response = await fetch('http://localhost:3001/api/admin/timetable', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/timetable', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -592,7 +592,7 @@ async function handleAddSlot(e) {
 async function loadTeachers() {
     const token = checkAuth();
     try {
-        const response = await fetch('http://localhost:3001/api/admin/teachers', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/admin/teachers', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -748,7 +748,7 @@ async function updateSlot(slotId) {
     };
 
     try {
-        const response = await fetch(`http://localhost:3001/api/admin/timetable/${slotId}`, {
+        const response = await fetch(`https://timetablebackend-a7n9.onrender.com/api/admin/timetable/${slotId}`, {
             method: 'PUT',
             headers: {
                 'Content-Type': 'application/json',
