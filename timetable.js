@@ -41,7 +41,7 @@ async function populateTimetable() {
     try {
         console.log('Fetching timetable...'); // Debug log
 
-        const response = await fetch('http://localhost:3001/api/timetable', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/timetable', {
             method: 'GET',
             headers: {
                 'Authorization': `Bearer ${token}`,
