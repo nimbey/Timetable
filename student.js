@@ -51,7 +51,7 @@ async function loadMyClasses() {
     try {
         console.log('Loading classes for subject:', user.subject);
         
-        const response = await fetch('http://localhost:3001/api/timetable/student', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/timetable/student', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
@@ -97,7 +97,7 @@ async function loadMyClasses() {
 async function loadAllSchedules() {
     const token = checkAuth();
     try {
-        const response = await fetch('http://localhost:3001/api/timetable/all', {
+        const response = await fetch('https://timetablebackend-a7n9.onrender.com/api/timetable/all', {
             headers: {
                 'Authorization': `Bearer ${token}`
             }
